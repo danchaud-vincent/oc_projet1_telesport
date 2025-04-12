@@ -14,21 +14,5 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.olympicService.loadInitialData().pipe(take(1)).subscribe();
   }
-
-  single = [
-    {
-      "name": "France",
-      "value": 100
-    },
-    {
-      "name": "USA",
-      "value": 200
-    },
-    {
-      "name": "Germany",
-      "value": 300
-    }
-  ];
-  
  
 }
