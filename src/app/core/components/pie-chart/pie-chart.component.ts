@@ -23,4 +23,9 @@ export class PieChartComponent {
   };
 
 
+  onSelect(event: any): void{
+    console.log(event)
+  }
+
+
 }
