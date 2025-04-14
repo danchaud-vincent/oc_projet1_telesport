@@ -2,4 +2,6 @@
 
 @if((olympic$ | async); as olympic){
     <p>{{olympic.country}}</p>
+
+    <app-line-chart [chartData]="[]"></app-line-chart>
 }
