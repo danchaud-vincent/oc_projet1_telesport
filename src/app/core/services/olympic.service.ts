@@ -39,6 +39,7 @@ export class OlympicService {
         if(!result){
           console.log(`Aucun pays trouvé pour ${name}`);
         }
+       
         return result;
       }),
       catchError(err => {

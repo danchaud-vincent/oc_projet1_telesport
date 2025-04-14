@@ -1,7 +1,7 @@
 <p>detail works!</p>
 
-@if((olympic$ | async); as olympic){
-    <p>{{olympic.country}}</p>
+@if((chartData$ | async); as olympic){
+    <p>{{olympic}}</p>
 
-    <app-line-chart [chartData]="[]"></app-line-chart>
+    <app-line-chart [chartData]="olympic" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
 }

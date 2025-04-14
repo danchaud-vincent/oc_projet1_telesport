@@ -14,6 +14,8 @@ export class LineChartComponent {
 
   @Input() chartData: any[] = [];
   @Input() view: [number, number] = [700, 400];
+  @Input() xAxisLabel: string = '';
+  @Input() yAxisLabel: string = '';
   chartOptions = {
     showLegend: true,
     showLabels: true,
@@ -22,8 +24,10 @@ export class LineChartComponent {
     yAxis: true,
     showYAxisLabel: true,
     showXAxisLabel: true,
-    xAxisLabel: 'Année',
-    yAxisLabel: 'Médailles',
+  };
+
+  xAxisTickFormatting = (val: string) => {
+    return new Date(`${val}-01-01`).getFullYear().toString(); 
   };
 
 }
