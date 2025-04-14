@@ -18,8 +18,11 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 })
 export class DetailComponent implements OnInit {
 
-  public olympic$: Observable<Olympic | undefined> = of(undefined) ;
   public chartData$: Observable<any[]> = of([]);
+  public nameCountry: string = "";
+  public nbEntries: number = 0;
+  public nbMedals: number = 0;
+  public nbAthletes: number = 0;
 
   constructor(
     private olympicService: OlympicService,
@@ -30,7 +33,17 @@ export class DetailComponent implements OnInit {
     const countryName: string = this.route.snapshot.params["name"].trim();
     
     this.chartData$ = this.olympicService.getOlympicByName(countryName).pipe(
-      tap(olympic => console.log(olympic)),
+      tap(olympic => {
+        if (olympic){
+          this.nameCountry = olympic.country;
+          this.nbEntries = olympic.participations.length;
+          this.nbMedals = olympic.participations.reduce((sum, currP) => sum + currP.medalsCount, 0);
+          this.nbAthletes = olympic.participations.reduce((sum, currP) => sum + currP.athleteCount, 0);
+        }
+        else{
+          this.nameCountry = `Aucun pays trouvé pour: ${countryName}`;
+        }
+      }),
       map(olympic => {
         if (olympic){
           return this.preparedDateForLineChart(olympic)

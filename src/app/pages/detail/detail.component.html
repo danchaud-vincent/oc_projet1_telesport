@@ -1,7 +1,11 @@
-<p>detail works!</p>
-
 @if((chartData$ | async); as olympic){
-    <p>{{olympic}}</p>
+    <h2>{{nameCountry}}</h2>
+    <p>Number of entries: {{nbEntries}}</p>
+    <p>Number of medals: {{nbMedals}}</p>
+    <p>Number of athletes: {{nbAthletes}}</p>
 
     <app-line-chart [chartData]="olympic" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
+}
+@else {
+    <p>Pays non trouvé!</p>
 }
