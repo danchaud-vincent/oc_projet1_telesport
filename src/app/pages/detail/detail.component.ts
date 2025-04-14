@@ -51,7 +51,6 @@ export class DetailComponent implements OnInit {
           return {
             value: p.medalsCount,
             name: p.year
-            // name: new Date(`${p.year}-01-01`)
           }
         })
       }
