@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { LineChartComponent } from 'src/app/core/components/line-chart/line-chart.component';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
@@ -9,14 +10,15 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
   selector: 'app-detail',
   standalone: true,
   imports: [
-    AsyncPipe
+    AsyncPipe,
+    LineChartComponent
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })
 export class DetailComponent implements OnInit {
 
-  public olympic$!: Observable<Olympic>;
+  public olympic$: Observable<Olympic | undefined> = of(undefined) ;
 
   constructor(
     private olympicService: OlympicService,
