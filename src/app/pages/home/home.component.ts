@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { PieChartComponent } from 'src/app/core/components/pie-chart/pie-chart.component';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
@@ -18,20 +18,35 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]> = of([]);
   public chartData$: Observable<any[]> = of([]);
+  nbCountries: number = 0;
+  nbOfJOs: number = 0;
 
   constructor(private olympicService: OlympicService) {}
 
   ngOnInit(): void {
     this.chartData$= this.olympicService.getOlympics().pipe(
+      tap(olympics => {
+        this.nbCountries = olympics.length
+
+        // get the numbers of JOs
+        const yearsJOs: Number[] = []
+
+        olympics.forEach(olympic => {
+          olympic.participations.forEach(participation => {
+            if (!yearsJOs.includes(participation.year)){
+              yearsJOs.push(participation.year)
+            }
+          })
+        })
+        
+        this.nbOfJOs = yearsJOs.length;
+
+      }),
       map(olympics => this.preparedDataForPieChart(olympics))
     );
-
-    console.log(this.chartData$)
   }
 
   preparedDataForPieChart(olympicsData: Olympic[]): any[]{
-
-    console.log(olympicsData)
     const chartData = olympicsData.map(olympic => {
       return {
         name: olympic.country,
@@ -42,6 +57,4 @@ export class HomeComponent implements OnInit {
 
     return chartData
   }
-
-
 }

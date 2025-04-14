@@ -2,7 +2,8 @@
 <hr />
 
 @if( (chartData$ | async) ; as data){
-
+    <p>Number of Countries: {{nbCountries}}</p>
+    <p>Number of JOs: {{nbOfJOs}}</p>
     <app-pie-chart [chartData]="data"></app-pie-chart>
 }
 
