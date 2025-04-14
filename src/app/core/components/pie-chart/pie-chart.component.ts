@@ -15,6 +15,8 @@ export class PieChartComponent {
   @Input() chartData: any[] = [];
   @Input() view: [number, number]= [700, 400];
   chartOptions = {
+    showLegend: true,
+    showLabels: true,
     explodeSlices: false,
     doughnut: false,
     animations: true
