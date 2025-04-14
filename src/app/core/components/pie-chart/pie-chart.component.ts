@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -22,10 +23,14 @@ export class PieChartComponent {
     animations: true
   };
 
+  constructor(private router: Router) {}
 
   onSelect(event: any): void{
-    console.log(event)
+    
+    if (event){
+      const url_end = event.name || event;
+      this.router.navigateByUrl(`${url_end}`);
+    }
+    
   }
-
-
 }
