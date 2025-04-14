@@ -33,17 +33,18 @@ export class OlympicService {
   getOlympicByName(name: string): Observable<Olympic | undefined> {
 
     const foundOlympic = this.getOlympics().pipe(
-      map((olympics: Olympic[]) => olympics.filter(ol => ol.country.toLowerCase() === name.toLowerCase())[0]),
-      tap((filtered: Olympic) => {
-        if (!filtered){
-          throw new Error(`Aucun pays trouvé pour ${name}`)
+      map((olympics: Olympic[]) => {
+        const result = olympics.find(ol => ol.country.toLowerCase() === name.toLowerCase());
+        
+        if(!result){
+          console.log(`Aucun pays trouvé pour ${name}`);
         }
+        return result;
       }),
       catchError(err => {
-        console.log(err)
-        return of(undefined)
+        console.log(err);
+        return of(undefined);
       })
-    
     );
 
     return foundOlympic
