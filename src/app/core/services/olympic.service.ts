@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
 
@@ -30,15 +30,21 @@ export class OlympicService {
     return this.olympics$.asObservable();
   }
 
-  getOlympicByName(name: string): Observable<Olympic>{
+  getOlympicByName(name: string): Observable<Olympic | undefined> {
 
     const foundOlympic = this.getOlympics().pipe(
-      map((olympics: Olympic[]) => olympics.filter(ol => ol.country.toLowerCase() === name.toLowerCase())[0])
+      map((olympics: Olympic[]) => olympics.filter(ol => ol.country.toLowerCase() === name.toLowerCase())[0]),
+      tap((filtered: Olympic) => {
+        if (!filtered){
+          throw new Error(`Aucun pays trouvé pour ${name}`)
+        }
+      }),
+      catchError(err => {
+        console.log(err)
+        return of(undefined)
+      })
+    
     );
-
-    if (!foundOlympic){
-      throw new Error("Country not found");
-    }
 
     return foundOlympic
   }
