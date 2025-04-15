@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -13,45 +12,32 @@ export class OlympicService {
   private olympics$ = new BehaviorSubject<Olympic[]>([]);
 
   constructor(
-    private http: HttpClient,
-    private snackBar: MatSnackBar
+    private http: HttpClient
   ) {}
 
   loadInitialData(): Observable<Olympic[]> {
 
     // Check if navigator is online
     if(!navigator.onLine){
-
-      // SnackBar: show the user the error
-      this.showError("Vous êtes actuellement hors ligne. Veuillez vérifier votre connexion.");
-   
-      console.warn('Appel annulé: utilisateur hors ligne.');
-
-      this.olympics$.next([]);
-
-      return of([])
+      return throwError(() => new Error("offline"));
     }
 
     // get the data with http request
     return this.http.get<Olympic[]>(this.olympicUrl).pipe(
       tap((value) => {
         // check if the json format is valid
-        if(!Array.isArray(value)){
-          throw new Error('Le fichier JSON n’a pas la bonne structure');
+        if(Array.isArray(value)){
+          throw new Error('format json');
         }
 
         this.olympics$.next(value)
 
       }),
       catchError(error => {
-        console.error(`Erreur lors du chargement des données:`, error);
-        
-        // SnackBar: show the user the error
-        this.showError("Une erreur est survenue! Erreur lors du chargement des données!");
-   
+
         this.olympics$.next([]);
 
-        return of([]);
+        return throwError(() => new Error(error.message));
       })
     );
   }
@@ -75,9 +61,6 @@ export class OlympicService {
       catchError(err => {
         console.log(err);
 
-        // SnackBar: show the user the error
-        this.showError(`Erreur: Aucun pays n'a été trouvé pour ${name}`);
-   
         return of(undefined);
       })
     );
@@ -85,14 +68,4 @@ export class OlympicService {
     return foundOlympic
   }
 
-
-  showError(errorMessage: string): void{
-    this.snackBar.open(
-      errorMessage, 
-      'Fermer', 
-      {
-      duration: 4000, // en ms
-      }
-    );
-  }
 }
