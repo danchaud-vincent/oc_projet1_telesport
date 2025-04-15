@@ -6,11 +6,6 @@
         <p>Number of athletes: {{nbAthletes}}</p>
        
         <app-line-chart [chartData]="lineChartData" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
-        
+        <a routerLink="">Go back</a>
     }
-    @else{
-        <p>{{errorMessage}}</p>
-    }
-
-    <button type="button" (click)="goBack()">Go back</button>
 }

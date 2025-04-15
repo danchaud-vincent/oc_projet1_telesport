@@ -10,12 +10,16 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'not-found', 
+    component: NotFoundComponent,
+  },
+  {
     path: ':name',
     component: DetailComponent,
   },
   {
     path: '**', // wildcard
-    component: NotFoundComponent,
+    redirectTo: 'not-found',
   },
 ];
 

@@ -1,6 +1,6 @@
 import { AsyncPipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map, Observable, of, tap } from 'rxjs';
 import { LineChartComponent } from 'src/app/core/components/line-chart/line-chart.component';
 import { LineChartData } from 'src/app/core/models/chart-data';
@@ -12,7 +12,8 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
   standalone: true,
   imports: [
     AsyncPipe,
-    LineChartComponent
+    LineChartComponent,
+    RouterLink
   ],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
@@ -24,11 +25,11 @@ export class DetailComponent implements OnInit {
   public nbEntries: number = 0;
   public nbMedals: number = 0;
   public nbAthletes: number = 0;
-  public errorMessage: string = '';
 
   constructor(
     private olympicService: OlympicService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ){}
 
@@ -39,7 +40,8 @@ export class DetailComponent implements OnInit {
     this.chartData$ = this.olympicService.getOlympicByName(countryName).pipe(
       tap(olympic => {
         if (!olympic){
-          this.errorMessage = `Erreur: Aucun pays trouvé pour ${countryName}`
+          console.log("not found")
+          this.router.navigateByUrl("not-found");
           return
         }
         
