@@ -66,7 +66,7 @@ export class DetailComponent implements OnInit {
 
   transformOlympicToChartData(olympicData: Olympic): LineChartData[]{
 
-    const chartData = [
+    return [
       {
         name: olympicData.country,
         series: olympicData.participations.map(p => {
@@ -78,7 +78,6 @@ export class DetailComponent implements OnInit {
       }
     ];
     
-    return chartData;
   }
   
 }
