@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
 import { PieChartComponent } from 'src/app/core/components/pie-chart/pie-chart.component';
+import { PieChartData } from 'src/app/core/models/chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
@@ -17,7 +18,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 })
 export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]> = of([]);
-  public chartData$: Observable<any[]> = of([]);
+  public chartData$: Observable<PieChartData[]> = of([]);
   nbCountries: number = 0;
   nbOfJOs: number = 0;
 
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  transformOlympicsToChartData(olympicsData: Olympic[]): any[]{
+  transformOlympicsToChartData(olympicsData: Olympic[]): PieChartData[]{
     const chartData = olympicsData.map(olympic => {
       return {
         name: olympic.country,

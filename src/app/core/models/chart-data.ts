@@ -9,5 +9,5 @@ export interface LineChartData{
     series: {
         name: string,
         value: number
-    }
+    }[]
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, of, tap } from 'rxjs';
 import { LineChartComponent } from 'src/app/core/components/line-chart/line-chart.component';
+import { LineChartData } from 'src/app/core/models/chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 
@@ -18,7 +19,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 })
 export class DetailComponent implements OnInit {
 
-  public chartData$: Observable<any[]> = of([]);
+  public chartData$: Observable<LineChartData[]> = of([]);
   public nameCountry: string = "";
   public nbEntries: number = 0;
   public nbMedals: number = 0;
@@ -60,15 +61,15 @@ export class DetailComponent implements OnInit {
 
   }
 
-  transformOlympicToChartData(olympicData: Olympic){
+  transformOlympicToChartData(olympicData: Olympic): LineChartData[]{
 
     const chartData = [
       {
         name: olympicData.country,
         series: olympicData.participations.map(p => {
           return {
-            value: p.medalsCount,
-            name: p.year.toString()
+            name: p.year.toString(),
+            value: p.medalsCount
           }
         })
       }
