@@ -18,15 +18,37 @@ export class OlympicService {
   ) {}
 
   loadInitialData(): Observable<Olympic[]> {
+
+    // Check if navigator is online
+    if(!navigator.onLine){
+
+      // SnackBar: show the user the error
+      this.showError("Vous êtes actuellement hors ligne. Veuillez vérifier votre connexion.");
+   
+      console.warn('Appel annulé: utilisateur hors ligne.');
+
+      this.olympics$.next([]);
+
+      return of([])
+    }
+
+    // get the data with http request
     return this.http.get<Olympic[]>(this.olympicUrl).pipe(
-      tap((value) => this.olympics$.next(value)),
-      catchError((error, caught) => {
+      tap((value) => {
+        // check if the json format is valid
+        if(!Array.isArray(value)){
+          throw new Error('Le fichier JSON n’a pas la bonne structure');
+        }
+
+        this.olympics$.next(value)
+
+      }),
+      catchError(error => {
         console.error(`Erreur lors du chargement des données:`, error);
         
-        this.snackBar.open('Une erreur est survenue.', 'Fermer', {
-          duration: 4000, // en ms
-        });
-
+        // SnackBar: show the user the error
+        this.showError("Une erreur est survenue! Erreur lors du chargement des données!");
+   
         this.olympics$.next([]);
 
         return of([]);
@@ -45,18 +67,32 @@ export class OlympicService {
         const result = olympics.find(ol => ol.country.toLowerCase() === name.toLowerCase());
         
         if(!result){
-          console.warn(`Aucun pays trouvé pour ${name}`);
-          return undefined;
+          throw new Error(`Erreur: Aucun pays trouvé pour ${name}`);
         }
        
         return result;
       }),
       catchError(err => {
         console.log(err);
+
+        // SnackBar: show the user the error
+        this.showError(`Erreur: Aucun pays n'a été trouvé pour ${name}`);
+   
         return of(undefined);
       })
     );
 
     return foundOlympic
+  }
+
+
+  showError(errorMessage: string): void{
+    this.snackBar.open(
+      errorMessage, 
+      'Fermer', 
+      {
+      duration: 4000, // en ms
+      }
+    );
   }
 }
