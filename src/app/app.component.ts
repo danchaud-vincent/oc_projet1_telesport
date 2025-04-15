@@ -19,26 +19,20 @@ export class AppComponent implements OnInit {
     this.olympicService.loadInitialData().pipe(
       take(1),
       catchError(error => {
-
-        if (error.message === "offline"){
-          // SnackBar: show the user the error
-          this.alertService.showError(`Erreur: Vous êtes actuellement hors ligne. Veuillez vérifier votre connexion.`);
+        let errMessage = "Une erreur est survenue! Erreur lors du chargement des données!";
         
-          console.error("Vous êtes actuellement hors ligne. Veuillez vérifier votre connexion.", error)
+        if (error.message === "offline"){
+          errMessage = "Vous êtes actuellement hors ligne. Veuillez vérifier votre connexion.";
         }
         else if (error.message === "format json"){
-          // SnackBar: show the user the error
-          this.alertService.showError(`Erreur: Erreur du format des données!`);
-   
-          console.error("Le fichier JSON n’a pas la bonne structure", error)
+          errMessage = "Le fichier JSON n’a pas la bonne structure";
         }
-        else{
-          // SnackBar: show the user the error
-          this.alertService.showError("Une erreur est survenue! Erreur lors du chargement des données!");
-   
-          console.error(error)
-        }
+
+        // SnackBar: show the user the error
+        this.alertService.showError(errMessage);
         
+        console.error(errMessage, error);
+
         return of([])
       })
     ).subscribe();

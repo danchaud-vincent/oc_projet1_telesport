@@ -26,7 +26,7 @@ export class OlympicService {
     return this.http.get<Olympic[]>(this.olympicUrl).pipe(
       tap((value) => {
         // check if the json format is valid
-        if(Array.isArray(value)){
+        if(!Array.isArray(value)){
           throw new Error('format json');
         }
 
@@ -37,6 +37,7 @@ export class OlympicService {
 
         this.olympics$.next([]);
 
+        // throw the error in the component to display the ErrorComponent
         return throwError(() => new Error(error.message));
       })
     );
