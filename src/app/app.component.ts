@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, of, take } from 'rxjs';
 import { OlympicService } from './core/services/olympic.service';
-import { AlertService } from './core/services/alert.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +11,6 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   constructor(
     private olympicService: OlympicService,
-    private alertService: AlertService,
     private router: Router
 
   ) {}
