@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { catchError, of, take } from 'rxjs';
 import { OlympicService } from './core/services/olympic.service';
 import { AlertService } from './core/services/alert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import { AlertService } from './core/services/alert.service';
 export class AppComponent implements OnInit {
   constructor(
     private olympicService: OlympicService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
 
   ) {}
 
@@ -32,6 +34,10 @@ export class AppComponent implements OnInit {
         this.alertService.showError(errMessage);
         
         console.error(errMessage, error);
+
+        this.router.navigateByUrl(`error/${errMessage}`);
+
+        console.log("after router")
 
         return of([])
       })

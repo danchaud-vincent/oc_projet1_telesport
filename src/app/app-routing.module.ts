@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { DetailComponent } from './pages/detail/detail.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'error/:errorMessage',
+    component: ErrorComponent,
   },
   {
     path: 'not-found', 
@@ -17,6 +22,7 @@ const routes: Routes = [
     path: ':name',
     component: DetailComponent,
   },
+
   {
     path: '**', // wildcard
     redirectTo: 'not-found',
