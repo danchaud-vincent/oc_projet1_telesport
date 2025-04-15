@@ -68,7 +68,7 @@ export class DetailComponent implements OnInit {
         series: olympicData.participations.map(p => {
           return {
             value: p.medalsCount,
-            name: p.year
+            name: p.year.toString()
           }
         })
       }
