@@ -6,33 +6,32 @@ import { PieChartData } from 'src/app/core/models/chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import {Router } from '@angular/router';
+import { KeyDataHeaderComponent } from "../../core/components/key-data-header/key-data-header.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     PieChartComponent,
-    AsyncPipe
-  ], 
+    AsyncPipe,
+    KeyDataHeaderComponent
+], 
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]> = of([]);
   public chartData$: Observable<PieChartData[]> = of([]);
-  nbCountries: number = 0;
-  nbOfJOs: number = 0;
+  public keyDataChart: any;
 
   constructor(
-    private olympicService: OlympicService,
-    private router: Router
+    private olympicService: OlympicService
   ) {}
 
   ngOnInit(): void {
     this.chartData$= this.olympicService.getOlympics().pipe(
       tap(olympics => {
-        this.nbCountries = olympics.length
-
+        
         // get the numbers of JOs
         const yearsJOs: Number[] = []
 
@@ -43,8 +42,21 @@ export class HomeComponent implements OnInit {
             }
           })
         })
-        
-        this.nbOfJOs = yearsJOs.length;
+
+        // set key data header
+        this.keyDataChart = {
+          title: "Medals per Country",
+          values: [
+            {
+              name: "Number of JOs",
+              value: yearsJOs.length
+            },
+            {
+              name: "Number of countries",
+              value: olympics.length
+            }
+          ]
+        };
 
       }),
       map(olympics => this.transformOlympicsToChartData(olympics)),

@@ -6,6 +6,7 @@ import { LineChartComponent } from 'src/app/core/components/line-chart/line-char
 import { LineChartData } from 'src/app/core/models/chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
+import { KeyDataHeaderComponent } from "../../core/components/key-data-header/key-data-header.component";
 
 @Component({
   selector: 'app-detail',
@@ -13,14 +14,16 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
   imports: [
     AsyncPipe,
     LineChartComponent,
-    RouterLink
-  ],
+    RouterLink,
+    KeyDataHeaderComponent
+],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })
 export class DetailComponent implements OnInit {
 
   public chartData$: Observable<LineChartData[]> = of([]);
+  public keyDataChart: any;
   public nameCountry: string = "";
   public nbEntries: number = 0;
   public nbMedals: number = 0;
@@ -49,10 +52,24 @@ export class DetailComponent implements OnInit {
           return []
         }
 
-        this.nameCountry = olympic.country;
-        this.nbEntries = olympic.participations.length;
-        this.nbMedals = olympic.participations.reduce((sum, currP) => sum + currP.medalsCount, 0);
-        this.nbAthletes = olympic.participations.reduce((sum, currP) => sum + currP.athleteCount, 0);
+        // set the key data header
+        this.keyDataChart = {
+          title: olympic.country,
+          values:[
+            {
+              name: "Number of entries",
+              value: olympic.participations.length
+            },
+            {
+              name: "Total number medals",
+              value: olympic.participations.reduce((sum, currP) => sum + currP.medalsCount, 0)
+            },
+            {
+              name: "Total number of athletes",
+              value: olympic.participations.reduce((sum, currP) => sum + currP.athleteCount, 0)
+            }
+          ]
+        };
        
         return this.transformOlympicToChartData(olympic)
         

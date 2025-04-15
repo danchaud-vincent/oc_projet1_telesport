@@ -1,10 +1,6 @@
 @if((chartData$ | async); as lineChartData){
     @if(lineChartData.length){
-        <h2>{{nameCountry}}</h2>
-        <p>Number of entries: {{nbEntries}}</p>
-        <p>Number of medals: {{nbMedals}}</p>
-        <p>Number of athletes: {{nbAthletes}}</p>
-       
+        <app-key-data-header [keyData]="keyDataChart"></app-key-data-header>
         <app-line-chart [chartData]="lineChartData" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
         <a routerLink="">Go back</a>
     }
