@@ -42,11 +42,11 @@ export class HomeComponent implements OnInit {
         this.nbOfJOs = yearsJOs.length;
 
       }),
-      map(olympics => this.preparedDataForPieChart(olympics))
+      map(olympics => this.transformOlympicsToChartData(olympics))
     );
   }
 
-  preparedDataForPieChart(olympicsData: Olympic[]): any[]{
+  transformOlympicsToChartData(olympicsData: Olympic[]): any[]{
     const chartData = olympicsData.map(olympic => {
       return {
         name: olympic.country,
