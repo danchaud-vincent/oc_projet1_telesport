@@ -37,7 +37,8 @@ export class OlympicService {
         const result = olympics.find(ol => ol.country.toLowerCase() === name.toLowerCase());
         
         if(!result){
-          console.log(`Aucun pays trouvé pour ${name}`);
+          console.warn(`Aucun pays trouvé pour ${name}`);
+          return undefined;
         }
        
         return result;
