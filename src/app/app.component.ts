@@ -37,8 +37,6 @@ export class AppComponent implements OnInit {
 
         this.router.navigateByUrl(`error/${errMessage}`);
 
-        console.log("after router")
-
         return of([])
       })
     ).subscribe();
