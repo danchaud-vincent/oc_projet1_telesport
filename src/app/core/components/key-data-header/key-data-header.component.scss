@@ -1,5 +1,11 @@
+.card-data, .header-title{
+    border-radius: 10px;
+}
+
+/* LAYOUT */
 .data-header-container{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -8,16 +14,31 @@
 .card-data{
     padding: 0.5em 1em;
     border: 2px solid #04838F;
-    border-radius: 10px;
     text-align: center;
 }
 
 /* TYPOGRAPHY */
+.header-title{
+    display: inline-block;
+    margin: 1em;
+    padding: 0.5em 1em;
+    color: whitesmoke;
+    background-color: #04838F;
+}
+
 .card-title{
     color: gray;
 }
 
 .card-value{
     font-weight: bold;
+}
+
+
+@media (min-width: 900px){
+    
+    .data-header-container{
+        flex-direction: row;
+    }
 }
 
