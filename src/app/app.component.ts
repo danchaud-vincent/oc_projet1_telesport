@@ -29,9 +29,6 @@ export class AppComponent implements OnInit {
         else if (error.message === "format json"){
           errMessage = "Le fichier JSON n’a pas la bonne structure";
         }
-
-        // SnackBar: show the user the error
-        this.alertService.showError(errMessage);
         
         console.error(errMessage, error);
 

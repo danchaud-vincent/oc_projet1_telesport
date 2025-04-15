@@ -1,7 +1,10 @@
 <h1>{{keyData.title}}</h1>
 
+<div class="data-header-container">
 @for (data of keyData.values; track $index) {
-    <p>{{data.name}}</p>
-    <p>{{data.value}}</p>
+    <div class="card-data">
+        <p class="card-title">{{data.name}}</p>
+        <p class="card-value">{{data.value}}</p>
+    </div>
 }
-
+</div>

@@ -1,6 +1,3 @@
-<h2>Olympic games app</h2>
-<hr />
-
 @if( (chartData$ | async) ; as data){
     <app-key-data-header [keyData]="keyDataChart"></app-key-data-header>
     <app-pie-chart [chartData]="data"></app-pie-chart>

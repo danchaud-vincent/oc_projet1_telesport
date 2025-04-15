@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Injectable({
@@ -7,15 +6,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AlertService {
 
-  constructor(private snackBar: MatSnackBar) { }
+  // constructor(private snackBar: MatSnackBar) { }
 
-  showError(errorMessage: string): void{
-    this.snackBar.open(
-      errorMessage, 
-      'Fermer', 
-      {
-      duration: 4000, // en ms
-      }
-    );
-  }
+  // showError(errorMessage: string): void{
+  //   this.snackBar.open(
+  //     errorMessage, 
+  //     'Fermer', 
+  //     {
+  //     duration: 4000, // en ms
+  //     }
+  //   );
+  // }
 }
