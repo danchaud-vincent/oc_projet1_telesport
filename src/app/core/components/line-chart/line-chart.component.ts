@@ -26,8 +26,4 @@ export class LineChartComponent {
     showXAxisLabel: true,
   };
 
-  // xAxisTickFormatting = (val: string) => {
-  //   return new Date(`${val}`).getFullYear().toString(); 
-  // };
-
 }
