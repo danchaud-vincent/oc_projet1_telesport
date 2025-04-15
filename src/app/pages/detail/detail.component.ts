@@ -45,6 +45,7 @@ export class DetailComponent implements OnInit {
       map(olympic => {
 
         if(!olympic){
+          
           return []
         }
 
@@ -55,13 +56,8 @@ export class DetailComponent implements OnInit {
        
         return this.transformOlympicToChartData(olympic)
         
-      }),
-      catchError(err => {
-        console.log(err);
-        return of([]);
       })
     );
-
   }
 
   transformOlympicToChartData(olympicData: Olympic): LineChartData[]{

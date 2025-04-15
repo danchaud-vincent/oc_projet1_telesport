@@ -37,7 +37,7 @@ export class OlympicService {
 
         this.olympics$.next([]);
 
-        // throw the error in the component to display the ErrorComponent
+        // throw the error in the component to display the
         return throwError(() => new Error(error.message));
       })
     );
@@ -52,17 +52,13 @@ export class OlympicService {
     const foundOlympic = this.getOlympics().pipe(
       map((olympics: Olympic[]) => {
         const result = olympics.find(ol => ol.country.toLowerCase() === name.toLowerCase());
-        
-        if(!result){
-          throw new Error(`Erreur: Aucun pays trouvé pour ${name}`);
-        }
        
         return result;
       }),
       catchError(err => {
-        console.log(err);
+        console.error(err);
 
-        return of(undefined);
+        return of(undefined)
       })
     );
 
