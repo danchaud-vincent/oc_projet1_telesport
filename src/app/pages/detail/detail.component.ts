@@ -30,7 +30,6 @@ export class DetailComponent implements OnInit {
     private olympicService: OlympicService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
   ){}
 
   ngOnInit(): void {
@@ -79,10 +78,5 @@ export class DetailComponent implements OnInit {
     
     return chartData;
   }
-
-  goBack(): void{
-    this.location.back();
-  }
-
   
 }
