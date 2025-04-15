@@ -49,12 +49,7 @@ export class HomeComponent implements OnInit {
       }),
       map(olympics => this.transformOlympicsToChartData(olympics)),
       catchError(error => {
-        console.error("Messagz1", error);
-  
-        if (error.message === 'offline') {
-          console.log("Message", error.message)
-          // this.router.navigateByUrl('/error');
-        }
+        console.error(error);
   
         return of([]);
       })
