@@ -1,11 +1,16 @@
-@if((chartData$ | async); as olympic){
-    <h2>{{nameCountry}}</h2>
-    <p>Number of entries: {{nbEntries}}</p>
-    <p>Number of medals: {{nbMedals}}</p>
-    <p>Number of athletes: {{nbAthletes}}</p>
-
-    <app-line-chart [chartData]="olympic" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
+@if((chartData$ | async); as lineChartData){
+    @if(lineChartData.length){
+        <h2>{{nameCountry}}</h2>
+        <p>Number of entries: {{nbEntries}}</p>
+        <p>Number of medals: {{nbMedals}}</p>
+        <p>Number of athletes: {{nbAthletes}}</p>
+       
+        <app-line-chart [chartData]="lineChartData" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
+        
+    }
+    @else{
+        <p>{{errorMessage}}</p>
+    }
 
     <button type="button" (click)="goBack()">Go back</button>
-
 }

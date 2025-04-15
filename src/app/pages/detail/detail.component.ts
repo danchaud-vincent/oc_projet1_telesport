@@ -23,6 +23,7 @@ export class DetailComponent implements OnInit {
   public nbEntries: number = 0;
   public nbMedals: number = 0;
   public nbAthletes: number = 0;
+  public errorMessage: string = '';
 
   constructor(
     private olympicService: OlympicService,
@@ -36,19 +37,21 @@ export class DetailComponent implements OnInit {
     
     this.chartData$ = this.olympicService.getOlympicByName(countryName).pipe(
       tap(olympic => {
-        if (olympic){
-          this.nameCountry = olympic.country;
-          this.nbEntries = olympic.participations.length;
-          this.nbMedals = olympic.participations.reduce((sum, currP) => sum + currP.medalsCount, 0);
-          this.nbAthletes = olympic.participations.reduce((sum, currP) => sum + currP.athleteCount, 0);
+        if (!olympic){
+          this.errorMessage = `Erreur: Aucun pays trouvé pour ${countryName}`
+          return
         }
-        else{
-          this.nameCountry = `Aucun pays trouvé pour: ${countryName}`;
-        }
+        
+        this.nameCountry = olympic.country;
+        this.nbEntries = olympic.participations.length;
+        this.nbMedals = olympic.participations.reduce((sum, currP) => sum + currP.medalsCount, 0);
+        this.nbAthletes = olympic.participations.reduce((sum, currP) => sum + currP.athleteCount, 0);
+
       }),
       map(olympic => {
+        
         if (olympic){
-          return this.preparedDateForLineChart(olympic)
+          return this.transformOlympicToChartData(olympic)
         }
 
         return []
@@ -57,7 +60,7 @@ export class DetailComponent implements OnInit {
 
   }
 
-  preparedDateForLineChart(olympicData: Olympic){
+  transformOlympicToChartData(olympicData: Olympic){
 
     const chartData = [
       {
@@ -72,7 +75,6 @@ export class DetailComponent implements OnInit {
     ];
     
     return chartData;
-    
   }
 
   goBack(): void{
