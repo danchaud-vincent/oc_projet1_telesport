@@ -5,4 +5,7 @@
     <p>Number of athletes: {{nbAthletes}}</p>
 
     <app-line-chart [chartData]="olympic" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
+
+    <button type="button" (click)="goBack()">Go back</button>
+
 }

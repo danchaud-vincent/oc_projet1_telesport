@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, of, tap } from 'rxjs';
@@ -26,7 +26,9 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private olympicService: OlympicService,
-    private route: ActivatedRoute){}
+    private route: ActivatedRoute,
+    private location: Location
+  ){}
 
   ngOnInit(): void {
     
@@ -71,6 +73,10 @@ export class DetailComponent implements OnInit {
     
     return chartData;
     
+  }
+
+  goBack(): void{
+    this.location.back();
   }
 
   
