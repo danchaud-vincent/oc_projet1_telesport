@@ -5,8 +5,8 @@ import { PieChartComponent } from 'src/app/core/components/pie-chart/pie-chart.c
 import { PieChartData } from 'src/app/core/models/chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
-import {Router } from '@angular/router';
 import { KeyDataHeaderComponent } from "../../core/components/key-data-header/key-data-header.component";
+import { keyDataHeader } from 'src/app/core/models/key-data-header';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +22,7 @@ import { KeyDataHeaderComponent } from "../../core/components/key-data-header/ke
 export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]> = of([]);
   public chartData$: Observable<PieChartData[]> = of([]);
-  public keyDataChart: any;
+  public keyDataChart: keyDataHeader = {title: "", values: []};
 
   constructor(
     private olympicService: OlympicService
@@ -30,36 +30,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.chartData$= this.olympicService.getOlympics().pipe(
-      tap(olympics => {
-        
-        // get the numbers of JOs
-        const yearsJOs: Number[] = []
-
-        olympics.forEach(olympic => {
-          olympic.participations.forEach(participation => {
-            if (!yearsJOs.includes(participation.year)){
-              yearsJOs.push(participation.year)
-            }
-          })
-        })
-
+      map(olympics => {
         // set key data header
-        this.keyDataChart = {
-          title: "Medals per Country",
-          values: [
-            {
-              name: "Number of JOs",
-              value: yearsJOs.length
-            },
-            {
-              name: "Number of countries",
-              value: olympics.length
-            }
-          ]
-        };
-
+        this.keyDataChart = this.getKeyDataFromOlympics(olympics);
+        
+        return this.transformOlympicsToChartData(olympics)
       }),
-      map(olympics => this.transformOlympicsToChartData(olympics)),
       catchError(error => {
         console.error(error);
   
@@ -69,7 +45,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  transformOlympicsToChartData(olympicsData: Olympic[]): PieChartData[]{
+  private transformOlympicsToChartData(olympicsData: Olympic[]): PieChartData[]{
     return olympicsData.map(olympic => {
       return {
         name: olympic.country,
@@ -77,6 +53,32 @@ export class HomeComponent implements OnInit {
         value: (olympic.participations || []).reduce( (sum, p) => sum + p.medalsCount ,0)
       }
     })
+  }
+
+  private getKeyDataFromOlympics(olympics: Olympic[]): keyDataHeader{
+    // get the numbers of JOs
+    const yearsJOs: number[] = []
+
+    olympics.forEach(olympic => {
+      olympic.participations.forEach(participation => {
+        if (!yearsJOs.includes(participation.year)){
+          yearsJOs.push(participation.year)
+        }
+      })
+    })
     
+    return {
+      title: "Medals per Country",
+      values: [
+        {
+          name: "Number of JOs",
+          value: yearsJOs.length
+        },
+        {
+          name: "Number of countries",
+          value: olympics.length
+        }
+      ]
+    };
   }
 }

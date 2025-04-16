@@ -1,12 +1,13 @@
-import { AsyncPipe, Location } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { catchError, map, Observable, of, tap } from 'rxjs';
+import {  map, Observable, of, tap } from 'rxjs';
 import { LineChartComponent } from 'src/app/core/components/line-chart/line-chart.component';
 import { LineChartData } from 'src/app/core/models/chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { KeyDataHeaderComponent } from "../../core/components/key-data-header/key-data-header.component";
+import { keyDataHeader } from 'src/app/core/models/key-data-header';
 
 @Component({
   selector: 'app-detail',
@@ -23,7 +24,7 @@ import { KeyDataHeaderComponent } from "../../core/components/key-data-header/ke
 export class DetailComponent implements OnInit {
 
   public chartData$: Observable<LineChartData[]> = of([]);
-  public keyDataChart: any;
+  public keyDataChart: keyDataHeader = {title: "", values: []};
   public nameCountry: string = "";
   public nbEntries: number = 0;
   public nbMedals: number = 0;
@@ -53,23 +54,7 @@ export class DetailComponent implements OnInit {
         }
 
         // set the key data header
-        this.keyDataChart = {
-          title: olympic.country,
-          values:[
-            {
-              name: "Number of entries",
-              value: olympic.participations.length
-            },
-            {
-              name: "Total number medals",
-              value: olympic.participations.reduce((sum, currP) => sum + currP.medalsCount, 0)
-            },
-            {
-              name: "Total number of athletes",
-              value: olympic.participations.reduce((sum, currP) => sum + currP.athleteCount, 0)
-            }
-          ]
-        };
+        this.keyDataChart = this.getKeyDataFromOlympic(olympic);
        
         return this.transformOlympicToChartData(olympic)
         
@@ -77,7 +62,7 @@ export class DetailComponent implements OnInit {
     );
   }
 
-  transformOlympicToChartData(olympicData: Olympic): LineChartData[]{
+  private transformOlympicToChartData(olympicData: Olympic): LineChartData[]{
 
     return [
       {
@@ -91,6 +76,26 @@ export class DetailComponent implements OnInit {
       }
     ];
     
+  }
+
+  private getKeyDataFromOlympic(olympic: Olympic):  keyDataHeader{
+    return {
+      title: olympic.country,
+      values:[
+        {
+          name: "Number of entries",
+          value: olympic.participations.length
+        },
+        {
+          name: "Total number medals",
+          value: olympic.participations.reduce((sum, currP) => sum + currP.medalsCount, 0)
+        },
+        {
+          name: "Total number of athletes",
+          value: olympic.participations.reduce((sum, currP) => sum + currP.athleteCount, 0)
+        }
+      ]
+    };
   }
   
 }
