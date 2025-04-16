@@ -11,14 +11,11 @@
     (select) = "onSelect($event)"
   >
   <ng-template #tooltipTemplate let-model="model">
-    <div class="tooltip">
-      <p>{{model.name}}</p>
-      <p>
-        <i class="fa-solid fa-medal"></i>
-        {{model.value}}
-      </p>
-    </div>
-    
+    <p>{{model.name}}</p>
+    <p>
+      <i class="fa-solid fa-medal"></i>
+      {{model.value}}
+    </p>
   </ng-template>
   </ngx-charts-pie-chart>
 </div>

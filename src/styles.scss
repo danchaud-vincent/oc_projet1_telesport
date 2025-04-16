@@ -8,6 +8,19 @@ body{
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+:root{
+    /* COLORS */
+    --turquoise: #04838F;
+
+    /* FONT SIZES */
+    --fs-xs: 0.75rem; /*12px*/
+    --fs-s: 1rem;  /*16px*/
+    --fs-m: 1.5rem; /*24px*/
+    --fs-l: 2rem; /*32px*/
+    --fs-title-small: 2rem; /*32px*/
+    --fs-title: 2.5rem; 
+}
+
 /******* GLOBAL STYLES *******/
 /* LAYOUT */
 main{
@@ -61,17 +74,17 @@ p{
 
 .goBack-link:active {
     color: whitesmoke;
-    background-color: lightseagreen;
+    background-color: var(--turquoise);
 }
 
 
 /* TOOLTIP CHART */
 ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip {
     .tooltip-caret.position-top {
-      border-top-color: lightseagreen;
+      border-top-color: var(--turquoise);
       box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
     }
   
-    background-color: lightseagreen;
+    background-color: var(--turquoise);
     box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
   }

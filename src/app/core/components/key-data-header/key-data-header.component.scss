@@ -18,18 +18,18 @@
 
 .card-data{
     padding: 0.5em 1em;
-    border: 2px solid #04838F;
+    border: 2px solid var(--turquoise);
     text-align: center;
 }
 
 /* TYPOGRAPHY */
 .header-title{
     display: inline-block;
-    font-size: 1.5rem;
+    font-size: var(--fs-m);
     margin: 1em;
     padding: 0.5em 1em;
     color: whitesmoke;
-    background-color: #04838F;
+    background-color: var(--turquoise);
 }
 
 .card-title{
@@ -44,7 +44,7 @@
 
 @media(min-width: 992px){
     .header-title{
-        font-size: 2rem;
+        font-size: var(--fs-l);
     }
 }
 
