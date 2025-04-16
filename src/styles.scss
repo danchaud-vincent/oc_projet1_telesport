@@ -5,7 +5,6 @@
 
 body{
     margin: 0; 
-    min-width: 570px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
@@ -64,3 +63,15 @@ p{
     color: whitesmoke;
     background-color: lightseagreen;
 }
+
+
+/* TOOLTIP CHART */
+ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip {
+    .tooltip-caret.position-top {
+      border-top-color: lightseagreen;
+      box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
+    }
+  
+    background-color: lightseagreen;
+    box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
+  }
