@@ -4,11 +4,14 @@
 
 /* LAYOUT */
 .data-header-container{
+    width: 70%;
+    margin: 0 auto 1em auto;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 1;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 1.5em;
 }
 
 .card-data{
@@ -36,10 +39,5 @@
 }
 
 
-@media (min-width: 900px){
-    
-    .data-header-container{
-        flex-direction: row;
-    }
-}
+
 

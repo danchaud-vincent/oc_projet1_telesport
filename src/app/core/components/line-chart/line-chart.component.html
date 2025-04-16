@@ -1,12 +1,14 @@
-<ngx-charts-line-chart
-  [view]="view"
-  [results]="chartData"
-  [legend]="chartOptions.showLegend"
-  [xAxis]="chartOptions.xAxis"
-  [yAxis]="chartOptions.yAxis"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [showXAxisLabel]="chartOptions.showXAxisLabel"
-  [showYAxisLabel]="chartOptions.showYAxisLabel"
-  [animations]="chartOptions.animations">
-</ngx-charts-line-chart>
+<div class="chart-wrapper">
+  <ngx-charts-line-chart
+    [view]="view"
+    [results]="chartData"
+    [legend]="chartOptions.showLegend"
+    [xAxis]="chartOptions.xAxis"
+    [yAxis]="chartOptions.yAxis"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [showXAxisLabel]="chartOptions.showXAxisLabel"
+    [showYAxisLabel]="chartOptions.showYAxisLabel"
+    [animations]="chartOptions.animations">
+  </ngx-charts-line-chart>
+</div>

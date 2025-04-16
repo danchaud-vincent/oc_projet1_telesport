@@ -3,6 +3,7 @@ body{
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/******* GLOBAL STYLES *******/
 /* LAYOUT */
 main{
     display: flex;
@@ -14,6 +15,7 @@ main{
 .chart-wrapper{
     width: 100vw;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
