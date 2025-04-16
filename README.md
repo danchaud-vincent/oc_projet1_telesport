@@ -2,9 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
-This project uses the library ngx-charts to display the data in charts.
-
+This project uses the library ngx-charts to display the data in charts:
 [ngx-charts github](https://github.com/swimlane/ngx-charts)
+
 [ngx-charts example](https://swimlane.github.io/ngx-charts/#/ngx-charts/bar-vertical)
 
 ## Description of the project
