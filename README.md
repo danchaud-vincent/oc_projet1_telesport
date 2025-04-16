@@ -2,6 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.3.
 
+This project uses the library ngx-charts to display the data in charts.
+
+[ngx-charts github](https://github.com/swimlane/ngx-charts)
+[ngx-charts example](https://swimlane.github.io/ngx-charts/#/ngx-charts/bar-vertical)
+
+## Description of the project
+
+This project allows the user to see the results of many nations in the previous Olympic Games. A personal page displays a country's performance in the past competitions.
+
+## Installation
+
 Don't forget to install your node_modules before starting (`npm install`).
 
 ## Development server
@@ -12,18 +23,5 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Where to start
+## Description
 
-As you can see, an architecture has already been defined for the project. It is just a suggestion, you can choose to use your own. The predefined architecture includes (in addition to the default angular architecture) the following:
-
-- `components` folder: contains every reusable components
-- `pages` folder: contains components used for routing
-- `core` folder: contains the business logic (`services` and `models` folders)
-
-I suggest you to start by understanding this starter code. Pay an extra attention to the `app-routing.module.ts` and the `olympic.service.ts`.
-
-Once mastered, you should continue by creating the typescript interfaces inside the `models` folder. As you can see I already created two files corresponding to the data included inside the `olympic.json`. With your interfaces, improve the code by replacing every `any` by the corresponding interface.
-
-You're now ready to implement the requested features.
-
-Good luck!
