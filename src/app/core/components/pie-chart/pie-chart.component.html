@@ -1,4 +1,6 @@
-<ngx-charts-pie-chart
+
+<div class="chart-wrapper">
+  <ngx-charts-pie-chart
     [view]="view"
     [results]="chartData"
     [labels]="chartOptions.showLabels"
@@ -8,3 +10,5 @@
     [animations]="chartOptions.animations"
     (select) = "onSelect($event)"
   ></ngx-charts-pie-chart>
+</div>
+

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
@@ -14,9 +14,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class PieChartComponent {
 
   @Input() chartData: any[] = [];
-  @Input() view: [number, number]= [700, 400];
+  view: [number, number]= [window.innerWidth * 0.7, window.innerHeight * 0.7];
   chartOptions = {
-    showLegend: true,
+    showLegend: false,
     showLabels: true,
     explodeSlices: false,
     doughnut: false,
@@ -32,5 +32,17 @@ export class PieChartComponent {
       this.router.navigateByUrl(`${url_end}`);
     }
     
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(){
+    this.updateView();
+  }
+
+  updateView(){
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    this.view = [width * 0.7, height * 0.7];
   }
 }

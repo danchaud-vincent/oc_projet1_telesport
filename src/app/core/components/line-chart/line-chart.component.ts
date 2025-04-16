@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -13,11 +13,11 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 export class LineChartComponent {
 
   @Input() chartData: any[] = [];
-  @Input() view: [number, number] = [700, 400];
   @Input() xAxisLabel: string = '';
   @Input() yAxisLabel: string = '';
+  view: [number, number]= [window.innerWidth * 0.7, window.innerHeight * 0.7];
   chartOptions = {
-    showLegend: true,
+    showLegend: false,
     showLabels: true,
     animations: true,
     xAxis: true,
@@ -25,5 +25,17 @@ export class LineChartComponent {
     showYAxisLabel: true,
     showXAxisLabel: true,
   };
+
+  @HostListener('window:resize', ['$event'])
+    onResize(){
+      this.updateView();
+  }
+  
+  updateView(){
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    this.view = [width * 0.7, height * 0.7];
+  }
 
 }
