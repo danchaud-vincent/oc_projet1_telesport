@@ -14,7 +14,13 @@ This project allows the user to see the results of many nations in the previous 
 
 ## Installation
 
-Don't forget to install your node_modules before starting (`npm install`).
+Git clone:
+
+> git clone https://github.com/danchaud-vincent/oc_projet1_telesport.git
+
+Install dependencies:
+
+> Don't forget to install your node_modules before starting (`npm install`).
 
 ## Development server
 
@@ -24,5 +30,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Description
 
