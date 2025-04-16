@@ -39,6 +39,10 @@ p{
     margin: 0;
 }
 
+.chart-wrapper text{
+    font-size: clamp(12px, 1.5vw, 24px);
+}
+
 /* LINK */
 .goBack-link{
     display: inline-block;
