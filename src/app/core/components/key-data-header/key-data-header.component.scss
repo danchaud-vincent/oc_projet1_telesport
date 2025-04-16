@@ -1,3 +1,5 @@
+
+/******* GLOBAL STYLES *******/
 .card-data, .header-title{
     border-radius: 10px;
 }
@@ -23,7 +25,7 @@
 /* TYPOGRAPHY */
 .header-title{
     display: inline-block;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 1em;
     padding: 0.5em 1em;
     color: whitesmoke;
@@ -36,6 +38,14 @@
 
 .card-value{
     font-weight: bold;
+}
+
+/******* MEDIA QUERIES *******/
+
+@media(min-width: 992px){
+    .header-title{
+        font-size: 2rem;
+    }
 }
 
 

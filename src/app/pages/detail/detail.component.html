@@ -2,6 +2,6 @@
     @if(lineChartData.length){
         <app-key-data-header [keyData]="keyDataChart"></app-key-data-header>
         <app-line-chart [chartData]="lineChartData" [xAxisLabel]="'Année'" [yAxisLabel]="'Médailles'"></app-line-chart>
-        <a routerLink="">Go back</a>
+        <a routerLink="" class="goBack-link">Go back</a>
     }
 }
