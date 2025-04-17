@@ -37,9 +37,9 @@ export class DetailComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    
+
     const countryName: string = this.route.snapshot.params["name"].trim();
-    
+
     this.chartData$ = this.olympicService.getOlympicByName(countryName).pipe(
       tap(olympic => {
         if (!olympic){
@@ -75,7 +75,6 @@ export class DetailComponent implements OnInit {
         })
       }
     ];
-    
   }
 
   private getKeyDataFromOlympic(olympic: Olympic):  keyDataHeader{
