@@ -15,7 +15,7 @@ export class LineChartComponent {
   @Input() chartData: any[] = [];
   @Input() xAxisLabel: string = '';
   @Input() yAxisLabel: string = '';
-  view: [number, number]= [window.innerWidth * 0.7, window.innerHeight * 0.7];
+  view: [number, number]= [window.innerWidth * 0.9, window.innerHeight * 0.7];
   chartOptions = {
     showLegend: false,
     showLabels: true,
@@ -35,7 +35,7 @@ export class LineChartComponent {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    this.view = [width * 0.7, height * 0.7];
+    this.view = [width * 0.9, height * 0.7];
   }
 
 }
