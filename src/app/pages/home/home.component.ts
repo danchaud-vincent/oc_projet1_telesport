@@ -2,7 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { PieChartComponent } from 'src/app/core/components/pie-chart/pie-chart.component';
-import { PieChartData } from 'src/app/core/models/chart-data';
+import { PieChartData } from 'src/app/core/models/pie-chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { KeyDataHeaderComponent } from "../../core/components/key-data-header/key-data-header.component";

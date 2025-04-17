@@ -22,10 +22,9 @@ const routes: Routes = [
     path: ':name',
     component: DetailComponent,
   },
-
   {
     path: '**', // wildcard
-    redirectTo: 'not-found',
+    redirectTo: '',
   },
 ];
 

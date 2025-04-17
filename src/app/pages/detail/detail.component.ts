@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {  map, Observable, of, tap } from 'rxjs';
 import { LineChartComponent } from 'src/app/core/components/line-chart/line-chart.component';
-import { LineChartData } from 'src/app/core/models/chart-data';
+import { LineChartData } from 'src/app/core/models/line-chart-data';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { KeyDataHeaderComponent } from "../../core/components/key-data-header/key-data-header.component";

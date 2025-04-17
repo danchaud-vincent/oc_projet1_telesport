@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
         }
         
         console.error(errMessage, error);
-
+        
         this.router.navigateByUrl(`error/${errMessage}`);
 
         return of([])

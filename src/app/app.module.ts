@@ -7,6 +7,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     BrowserAnimationsModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent],
 })
