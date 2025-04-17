@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OlympicService } from 'src/app/core/services/olympic.service';
 
 @Component({
   selector: 'app-error',
@@ -10,13 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ErrorComponent implements OnInit{
 
-  errorMessage: string = 'Une Erreur est survenue';
+  errorMessage: string | null = null;
 
   constructor(
-    private route: ActivatedRoute
+    private olympicService: OlympicService
   ) {}
 
   ngOnInit(): void {
-    this.errorMessage = this.route.snapshot.params["errorMessage"].trim();
+    this.errorMessage = this.olympicService.getErrorMessage();
   }
 }

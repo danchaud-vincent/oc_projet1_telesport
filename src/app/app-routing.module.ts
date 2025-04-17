@@ -11,7 +11,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'error/:errorMessage',
+    path: 'error',
     component: ErrorComponent,
   },
   {
