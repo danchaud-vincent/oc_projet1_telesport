@@ -59,7 +59,7 @@ export class OlympicService {
 
     const foundOlympic = this.getOlympics().pipe(
       
-     filter(olympics => olympics.length > 0),
+      filter(olympics => olympics.length > 0),
       first(), map((olympics: Olympic[]) => {
         
         const result = olympics.find(ol => ol.country.toLowerCase() === name.toLowerCase());
