@@ -1,5 +1,6 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { LineChartData } from '../../models/line-chart-data';
 
 @Component({
   selector: 'app-line-chart',
@@ -12,7 +13,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 })
 export class LineChartComponent {
 
-  @Input() chartData: any[] = [];
+  @Input() chartData: LineChartData[] = [];
   @Input() xAxisLabel: string = '';
   @Input() yAxisLabel: string = '';
   view: [number, number]= [window.innerWidth * 0.9, window.innerHeight * 0.7];

@@ -1,6 +1,7 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PieChartData } from '../../models/pie-chart-data';
 
 @Component({
   selector: 'app-pie-chart',
@@ -13,7 +14,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 })
 export class PieChartComponent {
 
-  @Input() chartData: any[] = [];
+  @Input() chartData: PieChartData[] = [];
   view: [number, number]= [window.innerWidth * 1, window.innerHeight * 0.7];
   chartOptions = {
     showLegend: false,
@@ -26,7 +27,7 @@ export class PieChartComponent {
   constructor(private router: Router) {}
 
   onSelect(event: any): void{
-    
+
     if (event){
       const url_end = event.name || event;
       this.router.navigateByUrl(`${url_end}`);

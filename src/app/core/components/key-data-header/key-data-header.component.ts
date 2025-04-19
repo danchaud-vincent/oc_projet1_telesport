@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { keyDataHeader } from '../../models/key-data-header';
 
 @Component({
   selector: 'app-key-data-header',
@@ -9,5 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class KeyDataHeaderComponent {
 
-  @Input() keyData: any;
+  @Input() keyData: keyDataHeader = { title: "", values: []};
 }
