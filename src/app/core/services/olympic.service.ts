@@ -10,17 +10,12 @@ import { Olympic } from '../models/Olympic';
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
   private olympics$ = new BehaviorSubject<Olympic[]>([]);
-  private loadingOlympics = new BehaviorSubject<boolean>(true);
-  loadingOlympics$ = this.loadingOlympics.asObservable();
 
   constructor(
     private http: HttpClient
   ) {}
 
   loadInitialData(): Observable<Olympic[]> {
-    
-    // Start of loading
-    this.loadingOlympics.next(true);  
 
     // Check if navigator is online
     if(!navigator.onLine){
@@ -41,13 +36,9 @@ export class OlympicService {
       catchError(error => {
 
         this.olympics$.next([]);
-
-        // End of loading
-        this.loadingOlympics.next(false);  
         
         return throwError(() => new Error(error.message));
-      }),
-      finalize(() => this.loadingOlympics.next(false)) // end of loading, error or not
+      })
     );
   }
 
@@ -78,7 +69,6 @@ export class OlympicService {
 
   setErrorMessage(errorMessage: string){
     sessionStorage.setItem('app_error', errorMessage);
-    
   }
   
   getErrorMessage(): string | null{
