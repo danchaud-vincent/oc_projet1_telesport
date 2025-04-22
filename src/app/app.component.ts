@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
+import { catchError, filter, of, take } from 'rxjs';
 import { OlympicService } from './core/services/olympic.service';
-import { Color } from '@swimlane/ngx-charts';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,27 @@ import { Color } from '@swimlane/ngx-charts';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private olympicService: OlympicService) {}
+  constructor(
+    private olympicService: OlympicService,
+    private router: Router
+
+  ) {}
 
   ngOnInit(): void {
-    this.olympicService.loadInitialData().pipe(take(1)).subscribe();
+    this.olympicService.loadInitialData().pipe(
+      filter(olympics => olympics.length > 0),
+      take(1),
+      catchError(error => {
+      
+        console.error(error);
+
+        this.olympicService.setErrorMessage(error.message)
+
+        this.router.navigateByUrl(`error`);
+
+        return of([])
+      })
+    ).subscribe();
   }
  
 }

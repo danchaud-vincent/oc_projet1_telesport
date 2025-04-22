@@ -1,0 +1,24 @@
+
+<div class="chart-wrapper">
+  <ngx-charts-pie-chart
+    [view]="view"
+    [results]="chartData"
+    [labels]="chartOptions.showLabels"
+    [trimLabels]="true"
+    [maxLabelLength]="100"
+    [legend]="chartOptions.showLegend"
+    [doughnut]="chartOptions.doughnut"
+    [explodeSlices]="chartOptions.explodeSlices"
+    [animations]="chartOptions.animations"
+    (select) = "onSelect($event)"
+  >
+  <ng-template #tooltipTemplate let-model="model">
+    <p>{{model.name}}</p>
+    <p>
+      <i class="fa-solid fa-medal"></i>
+      {{model.value}}
+    </p>
+  </ng-template>
+  </ngx-charts-pie-chart>
+</div>
+

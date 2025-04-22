@@ -1,0 +1,7 @@
+@if((chartData$ | async); as lineChartData){
+    @if(lineChartData.length){
+        <app-key-data-header [keyData]="keyDataChart"></app-key-data-header>
+        <app-line-chart [chartData]="lineChartData" [xAxisLabel]="'Dates'" [yAxisLabel]="'Medals'"></app-line-chart>
+        <a routerLink="" class="goBack-link">Go back</a>
+    }
+}

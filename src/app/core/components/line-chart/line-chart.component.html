@@ -1,0 +1,21 @@
+<div class="chart-wrapper">
+  <ngx-charts-line-chart
+    [view]="view"
+    [results]="chartData"
+    [legend]="chartOptions.showLegend"
+    [xAxis]="chartOptions.xAxis"
+    [yAxis]="chartOptions.yAxis"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [showXAxisLabel]="chartOptions.showXAxisLabel"
+    [showYAxisLabel]="chartOptions.showYAxisLabel"
+    [animations]="chartOptions.animations">
+    <ng-template #tooltipTemplate let-model="model">
+      <p>{{model.name}}</p>
+      <p>
+        <i class="fa-solid fa-medal"></i>
+        {{model.value}}
+      </p>
+    </ng-template>
+  </ngx-charts-line-chart>
+</div>

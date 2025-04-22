@@ -1,1 +1,90 @@
-/* You can add global styles to this file, and also import other style files */
+/* RESET */
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root{
+    /* COLORS */
+    --turquoise: #04838F;
+
+    /* FONT SIZES */
+    --fs-xs: 0.75rem; /*12px*/
+    --fs-s: 1rem;  /*16px*/
+    --fs-m: 1.5rem; /*24px*/
+    --fs-l: 2rem; /*32px*/
+    --fs-title-small: 2rem; /*32px*/
+    --fs-title: 2.5rem; 
+}
+
+/******* GLOBAL STYLES *******/
+/* LAYOUT */
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.chart-wrapper{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.center {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* TYPOGRAPHY */
+p{
+    margin: 0;
+}
+
+.chart-wrapper text{
+    font-size: clamp(12px, 1.5vw, 24px);
+}
+
+/* LINK */
+.goBack-link{
+    display: inline-block;
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: black;
+    border-radius: 10px;
+    
+}
+
+.goBack-link:hover, .goBack-link:focus{
+    text-decoration: underline;
+}
+
+.goBack-link:active {
+    color: whitesmoke;
+    background-color: var(--turquoise);
+}
+
+
+/* TOOLTIP CHART */
+ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip {
+    .tooltip-caret.position-top {
+      border-top-color: var(--turquoise);
+      box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
+    }
+  
+    background-color: var(--turquoise);
+    box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.2);
+  }
